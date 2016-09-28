@@ -96,7 +96,10 @@ export class Form extends Component {
   }
 
   registerField(name) {
-    this.fields[name] = false;
+    this.fields[name] = {
+      value: '',
+      valid: false,
+    };
   }
 
   handleFieldValid(name) {

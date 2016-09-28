@@ -2,6 +2,23 @@ import React, { Component } from 'react';
 
 import {Form, formField} from './Forms';
 
+const goals = trimLines(`
+  /**
+   * Goals
+   * - [x] Create custom validators with customizable error messages - don't be locked into specific messages
+   * - [x] Async validation with promises
+   * - [x] Run validation per field on keystroke with throttle
+   * - [x] *Display* validation on blur after initial input only
+   * - [x] Have way to determine if form as a whole is (in)valid given all of its fields
+   * - [ ] Have way to manually update fields with errors from submission
+   *       (this is fucking hard to do properly)
+   * - [ ] Have way to submit form fields
+   *   - [ ] Move form field state into form context instead of in field state (value, error message?)
+   *      - Form has to be source of truth for field state because it's needed for submission, otherwise you'd have to introspect into
+   *        child fields (as formsy-react does) which is generally considered bad practice.
+   */
+`);
+
 /**
  * This is a customized field that uses formField as a higher-order component.
  *
@@ -133,17 +150,7 @@ class App extends Component {
     return (
       <div className="App">
         <pre>
-          {trimLines(`/**
-           * Goals
-           * 1. [x] Create custom validators with customizable error messages - don't be locked into specific messages
-           * 2. [x] Async validation with promises
-           * 3. [x] Run validation per field on keystroke with throttle
-           * 4. [x] *Display* validation on blur after initial input only
-           * 5. [x] Have way to determine if form as a whole is (in)valid given all of its fields
-           * 6. [ ] Have way to manually update fields with errors from submission
-           *        (this is fucking hard to do properly)
-           */
-          `)}
+          {goals}
         </pre>
 
         <Form onSubmit={this.handleSubmit} onValid={this.handleValid.bind(this)} onInvalid={this.handleInvalid.bind(this)}>
